@@ -1,0 +1,12 @@
+# Threat model
+
+| Threat | Control and qualification |
+| --- | --- |
+| Host impersonation | Bind the expected HTTPS name to the intended host through a trusted channel before enrollment. Use normal certificate validation and validate the private ingress's device identity. |
+| Session hijacking, credential theft, revocation | Gate HTTP and WebSocket through the dedicated mTLS gateway. Use a separate gateway account and operator-owned enrollment registry. Keep browser and ingress credentials out of logs. Test that revocation cuts an active socket and denies reconnection. Remove the device certificate fingerprint from the gateway registry to revoke access independently of browser storage. |
+| Replay or artifact substitution | Sign release ID, filename, size and SHA-256 with a separately trusted Ed25519 key. Require an independently known release ID and never reuse it. Existing signed artifacts remain valid when explicitly requested with their original release ID. |
+| Command injection and privilege escalation | The terminal intentionally runs commands as the workspace user. Give the account only its own approved checkout and credentials. Keep sudo, privileged services, container sockets and personal SSH material outside its reach. Test in a clean account before granting access. |
+| Path traversal and malicious downloads | The manifest contains a basename. The CLI opens caller-supplied local paths and checks regular-file type, never uses a manifest-provided path, and does not extract or execute downloads. Verify files in an account-owned directory. Keep verified files there to prevent substitution after verification. |
+| Malicious plugins and dependencies | Keep optional plugins disabled during qualification. Review and pin the gateway source and its dependency graph. Treat registry verification as evidence about a particular snapshot. |
+| Compromised build or signing machine | Keep the signing key outside the remote workspace and its web roots. Inspect what is signed. A valid signature identifies the signer and artifact bytes. Provision replacement keys and release IDs through a separate trusted channel after compromise. |
+| Resource exhaustion and races | The CLI caps manifest and key inputs, streams file hashing, checks for file changes during hashing, and publishes manifests atomically without overwrite. Upstream terminal buffer limits, output ordering and backpressure require review and qualification. |

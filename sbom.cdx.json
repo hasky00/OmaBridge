@@ -1,0 +1,51 @@
+{
+  "$schema": "http://cyclonedx.org/schema/bom-1.5.schema.json",
+  "bomFormat": "CycloneDX",
+  "specVersion": "1.5",
+  "serialNumber": "urn:uuid:af702960-8180-4ad4-8ae3-164df3521e4b",
+  "version": 1,
+  "metadata": {
+    "timestamp": "2026-11-27T08:08:51.400Z",
+    "lifecycles": [
+      {
+        "phase": "build"
+      }
+    ],
+    "tools": [
+      {
+        "vendor": "npm",
+        "name": "cli",
+        "version": "12.0.2"
+      }
+    ],
+    "component": {
+      "bom-ref": "omabridge@0.1.0",
+      "type": "library",
+      "name": "omabridge",
+      "version": "0.1.0",
+      "scope": "required",
+      "purl": "pkg:npm/omabridge@0.1.0",
+      "properties": [
+        {
+          "name": "cdx:npm:package:private",
+          "value": "true"
+        }
+      ],
+      "externalReferences": [],
+      "licenses": [
+        {
+          "license": {
+            "id": "MIT"
+          }
+        }
+      ]
+    }
+  },
+  "components": [],
+  "dependencies": [
+    {
+      "ref": "omabridge@0.1.0",
+      "dependsOn": []
+    }
+  ]
+}
