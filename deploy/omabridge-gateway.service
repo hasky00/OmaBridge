@@ -1,0 +1,17 @@
+[Unit]
+Description=OmaBridge device-authenticated HTTPS gateway
+After=network.target
+
+[Service]
+User=omabridge-gateway
+Group=omabridge-gateway
+ExecStart=/usr/bin/node /opt/omabridge/src/host.mjs serve /etc/omabridge/gateway.json
+Restart=on-failure
+NoNewPrivileges=yes
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

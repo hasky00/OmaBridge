@@ -1,0 +1,9 @@
+{
+  "origin": "https://bridge.example.net:8443",
+  "bind": "127.0.0.1",
+  "upstreamPort": 4187,
+  "registry": "/etc/omabridge/devices",
+  "key": "/etc/omabridge/server.key",
+  "cert": "/etc/omabridge/server-chain.pem",
+  "ca": "/etc/omabridge/device-ca.pem"
+}

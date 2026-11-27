@@ -1,0 +1,23 @@
+{
+  "name": "omabridge",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "files": [
+    "src",
+    "docs",
+    "sbom.cdx.json"
+  ],
+  "bin": {
+    "omabridge": "src/cli.mjs",
+    "omabridge-host": "src/host.mjs"
+  },
+  "scripts": {
+    "test": "node --test",
+    "benchmark": "node scripts/benchmark.mjs"
+  }
+}
